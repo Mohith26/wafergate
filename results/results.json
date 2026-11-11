@@ -1,0 +1,252 @@
+{
+  "dataset": {
+    "source": "WM-811K (Wu, Jang, Chen 2015), MIR Lab public archive",
+    "labeled_maps_in_source": 172950,
+    "class_counts_in_source": {
+      "none": 147431,
+      "Edge-Ring": 9680,
+      "Edge-Loc": 5189,
+      "Center": 4294,
+      "Loc": 3593,
+      "Scratch": 1193,
+      "Random": 866,
+      "Donut": 555,
+      "Near-full": 149
+    },
+    "none_downsampled_to": 30000,
+    "maps_in_cache": 55519,
+    "grid": 48,
+    "seed": 0,
+    "split": "grouped by lot, 70/15/15 of lots",
+    "n_lots": 10738,
+    "train_maps": 38717,
+    "val_maps": 8283,
+    "test_maps": 7964,
+    "unseen_pattern": "Donut",
+    "unseen_maps": 555,
+    "lot_overlap_between_splits": 0,
+    "test_class_counts": {
+      "Center": 696,
+      "Edge-Loc": 731,
+      "Edge-Ring": 1206,
+      "Loc": 575,
+      "Near-full": 14,
+      "Random": 98,
+      "Scratch": 186,
+      "none": 4458
+    },
+    "split_sha256": "b7a58412e63c43ef16eeb28caacbbc6af573eb6d96f06570fbb1c7a624ed5fea"
+  },
+  "policy": {
+    "macro_f1_min": 0.7,
+    "min_improvement_over_champion": 0.01,
+    "per_class_recall_min": 0.5,
+    "max_class_recall_regression": 0.05,
+    "ece_max": 0.05,
+    "ood_auroc_min": 0.75,
+    "in_dist_abstain_max": 0.08
+  },
+  "candidates": {
+    "v1_gbm_handcrafted": {
+      "macro_f1": 0.8870659857592232,
+      "accuracy": 0.9291813159216474,
+      "per_class_recall": {
+        "Center": 0.9195402298850575,
+        "Edge-Loc": 0.8686730506155951,
+        "Edge-Ring": 0.9751243781094527,
+        "Loc": 0.76,
+        "Near-full": 1.0,
+        "Random": 0.8469387755102041,
+        "Scratch": 0.7795698924731183,
+        "none": 0.9578286227007626
+      },
+      "ece": 0.008055610452363011,
+      "ood_auroc": 0.7193202745688934,
+      "temperature": 1.6613035747169755,
+      "ood_method": "msp",
+      "abstain_recall_unseen": 0.14954954954954955,
+      "abstain_precision_unseen": 0.162109375,
+      "in_dist_abstain_rate": 0.05386740331491713,
+      "unseen_caught": 83,
+      "unseen_total": 555,
+      "in_dist_abstained": 429,
+      "in_dist_total": 7964,
+      "macro_f1_on_kept": 0.9264949361924814
+    },
+    "v2_cnn_rushed_retrain": {
+      "macro_f1": 0.7930814374903152,
+      "accuracy": 0.9166248116524359,
+      "per_class_recall": {
+        "Center": 0.9252873563218391,
+        "Edge-Loc": 0.7920656634746922,
+        "Edge-Ring": 0.9734660033167496,
+        "Loc": 0.6695652173913044,
+        "Near-full": 1.0,
+        "Random": 0.8469387755102041,
+        "Scratch": 0.0967741935483871,
+        "none": 0.9876626289816061
+      },
+      "ece": 0.007575424018515725,
+      "ood_auroc": 0.9700978728603039,
+      "temperature": 0.8262180649089214,
+      "ood_method": "mahalanobis",
+      "abstain_recall_unseen": 0.7603603603603604,
+      "abstain_precision_unseen": 0.5516339869281046,
+      "in_dist_abstain_rate": 0.04306880964339528,
+      "unseen_caught": 422,
+      "unseen_total": 555,
+      "in_dist_abstained": 343,
+      "in_dist_total": 7964,
+      "macro_f1_on_kept": 0.7843063462628669
+    },
+    "v3_cnn_weighted": {
+      "macro_f1": 0.8983261926404018,
+      "accuracy": 0.9461325966850829,
+      "per_class_recall": {
+        "Center": 0.9454022988505747,
+        "Edge-Loc": 0.8604651162790697,
+        "Edge-Ring": 0.9842454394693201,
+        "Loc": 0.8121739130434783,
+        "Near-full": 1.0,
+        "Random": 0.9183673469387755,
+        "Scratch": 0.8494623655913979,
+        "none": 0.971736204576043
+      },
+      "ece": 0.004849485779814455,
+      "ood_auroc": 0.9745415179116835,
+      "temperature": 0.8293363276574254,
+      "ood_method": "mahalanobis",
+      "abstain_recall_unseen": 0.7945945945945946,
+      "abstain_precision_unseen": 0.5639386189258312,
+      "in_dist_abstain_rate": 0.04281767955801105,
+      "unseen_caught": 441,
+      "unseen_total": 555,
+      "in_dist_abstained": 341,
+      "in_dist_total": 7964,
+      "macro_f1_on_kept": 0.906537046017259
+    }
+  },
+  "gate_decisions": [
+    {
+      "candidate": "v1_gbm_handcrafted",
+      "version": 1,
+      "promoted": false,
+      "violations": [
+        "ood_auroc_min: 0.7193 vs floor 0.75"
+      ],
+      "audit_hash": "6ecef06e068b276d731794936f578c9b64a20b386a24c7acc3ff6e46ca817f6c"
+    },
+    {
+      "candidate": "v2_cnn_rushed_retrain",
+      "version": 2,
+      "promoted": false,
+      "violations": [
+        "per_class_recall_min: worst class Scratch recall 0.0968 vs floor 0.5"
+      ],
+      "audit_hash": "02dc9a2635edb9f0c7ba7bb6d93982377b1bf866553c5cd994bb3e247d405d85"
+    },
+    {
+      "candidate": "v3_cnn_weighted",
+      "version": 3,
+      "promoted": true,
+      "violations": [],
+      "audit_hash": "f34e2256b9427ad7216ca782c2674029202c2c45b08be83d76a4326b794031d0"
+    }
+  ],
+  "msp_baseline_on_cnn": {
+    "ood_auroc": 0.5998197971954877,
+    "abstain_recall_unseen": 0.13873873873873874,
+    "abstain_precision_unseen": 0.15217391304347827,
+    "in_dist_abstain_rate": 0.05386740331491713,
+    "unseen_caught": 77,
+    "unseen_total": 555,
+    "in_dist_abstained": 429,
+    "in_dist_total": 7964
+  },
+  "drift": {
+    "clean": {
+      "harmful": false,
+      "batches": 20,
+      "batch_size": 400,
+      "blocked_batches": 0,
+      "block_rate": 0.0,
+      "macro_f1_if_served": 0.899218292548968,
+      "example_reason": ""
+    },
+    "probe_card_wear": {
+      "harmful": true,
+      "batches": 20,
+      "batch_size": 400,
+      "blocked_batches": 20,
+      "block_rate": 1.0,
+      "macro_f1_if_served": 0.8529184743604323,
+      "example_reason": "PSI ring1=1.368 > 0.25"
+    },
+    "edge_bead_issue": {
+      "harmful": true,
+      "batches": 20,
+      "batch_size": 400,
+      "blocked_batches": 20,
+      "block_rate": 1.0,
+      "macro_f1_if_served": 0.7356421923901327,
+      "example_reason": "PSI ring3=3.737 > 0.25"
+    },
+    "tester_half_dropout": {
+      "harmful": true,
+      "batches": 20,
+      "batch_size": 400,
+      "blocked_batches": 20,
+      "block_rate": 1.0,
+      "macro_f1_if_served": 0.7436171252152026,
+      "example_reason": "PSI quadrant_asym=0.385 > 0.25"
+    },
+    "rotation_control": {
+      "harmful": false,
+      "batches": 20,
+      "batch_size": 400,
+      "blocked_batches": 0,
+      "block_rate": 0.0,
+      "macro_f1_if_served": 0.8945906086663671,
+      "example_reason": ""
+    }
+  },
+  "headline": {
+    "baseline_macro_f1": 0.8870659857592232,
+    "cnn_macro_f1": 0.8983261926404018,
+    "macro_f1_gain_points": 1.126020688117857,
+    "baseline_rare_class_recall": {
+      "Near-full": 1.0,
+      "Scratch": 0.7795698924731183,
+      "Random": 0.8469387755102041
+    },
+    "cnn_rare_class_recall": {
+      "Near-full": 1.0,
+      "Scratch": 0.8494623655913979,
+      "Random": 0.9183673469387755
+    },
+    "cnn_ece": 0.004849485779814455,
+    "baseline_ece": 0.008055610452363011,
+    "unseen_donut_auroc_mahalanobis": 0.9745415179116835,
+    "unseen_donut_auroc_msp_baseline": 0.5998197971954877,
+    "unseen_donut_abstain_recall_mahalanobis": 0.7945945945945946,
+    "unseen_donut_abstain_recall_msp_baseline": 0.13873873873873874,
+    "in_dist_abstain_rate_mahalanobis": 0.04281767955801105,
+    "candidates_evaluated": 3,
+    "candidates_promoted": 1,
+    "candidates_blocked": 2,
+    "champion": "v3_cnn_weighted",
+    "registry_reload_prediction_match": 1.0,
+    "audit_chain_valid": true,
+    "drift_harmful_batches_blocked": 60,
+    "drift_harmful_batches_total": 60,
+    "drift_clean_false_alarms": 0,
+    "drift_clean_batches": 20,
+    "drift_benign_rotation_blocked": 0,
+    "drift_clean_macro_f1": 0.899218292548968,
+    "drift_worst_harmful_macro_f1": 0.7356421923901327,
+    "drift_psi_limit": 0.25,
+    "drift_abstain_limit": 0.10020523964747072
+  },
+  "runtime_seconds": 1630.8,
+  "quick_mode": false
+}

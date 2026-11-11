@@ -1,0 +1,9 @@
+{
+  "macro_f1_min": 0.70,
+  "min_improvement_over_champion": 0.01,
+  "per_class_recall_min": 0.50,
+  "max_class_recall_regression": 0.05,
+  "ece_max": 0.05,
+  "ood_auroc_min": 0.75,
+  "in_dist_abstain_max": 0.08
+}

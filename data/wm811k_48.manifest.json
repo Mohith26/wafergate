@@ -1,0 +1,19 @@
+{
+  "source": "WM-811K (Wu, Jang, Chen 2015), MIR Lab public archive",
+  "labeled_maps_in_source": 172950,
+  "class_counts_in_source": {
+    "none": 147431,
+    "Edge-Ring": 9680,
+    "Edge-Loc": 5189,
+    "Center": 4294,
+    "Loc": 3593,
+    "Scratch": 1193,
+    "Random": 866,
+    "Donut": 555,
+    "Near-full": 149
+  },
+  "none_downsampled_to": 30000,
+  "maps_in_cache": 55519,
+  "grid": 48,
+  "seed": 0
+}
